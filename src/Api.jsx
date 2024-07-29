@@ -15,6 +15,17 @@ const generationConfig = {
 };
 
 export const sendMessage = async (message) => {
+  // Check if the message contains a question about the creator of the website
+  const creatorKeywords = ["who's the creator", "who created", "creator of the website", "made this website"];
+  const lowerCaseMessage = message.toLowerCase();
+
+  for (const keyword of creatorKeywords) {
+    if (lowerCaseMessage.includes(keyword)) {
+      return "The creator of this website is my maestro Debayudh.";
+    }
+  }
+
+  // Proceed with the AI model if no keywords are detected
   const chatSession = model.startChat({
     generationConfig,
     history: [],
